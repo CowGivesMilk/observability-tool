@@ -21,19 +21,14 @@ class LogsQuery(BaseModel):
     service: str | None = None
     level: str | None = None
     since_minutes: int = 60
+    since: datetime | None = None
     limit: int = 100
 
 
 @app.get("/logs")
 def get_logs(query: LogsQuery = Depends()):
-    since = datetime.now(timezone.utc) - timedelta(minutes=query.since_minutes)
-
-    return query_logs(
-        query.service,
-        query.level,
-        since,
-        query.limit,
-    )
+    since = query.since or (datetime.now(timezone.utc) - timedelta(minutes=query.since_minutes))
+    return query_logs(query.service, query.level, since, query.limit)
 
 
 class MetricQuery(BaseModel):

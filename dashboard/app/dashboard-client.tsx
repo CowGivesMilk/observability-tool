@@ -22,7 +22,7 @@ export default function DashboardClient({ initialLogs, initialLatency, initialEr
             lastLogFetch.current = new Date().toISOString();
 
             const [newLogs, freshLatency, freshErrorRate] = await Promise.all([
-                fetchLogs({ since_minutes: minutesSince(since), limit: 100 }),
+                fetchLogs({ since, limit: 100 }),
                 fetchMetrics({ metric_name: "request_latency_ms", since_minutes: 10, bucket_minutes: 1 }),
                 fetchMetrics({ metric_name: "error_rate", since_minutes: 10, bucket_minutes: 1 }),
             ]);

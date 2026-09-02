@@ -16,6 +16,7 @@ export type MetricBucket = {
 export async function fetchLogs(params: {
     service?: string;
     level?: string;
+    since?: string;
     since_minutes?: number;
     limit?: number;
 }): Promise<LogEntry[]> {
