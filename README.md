@@ -315,7 +315,7 @@ After validation, the event is forwarded to Redis rather than written directly t
 ```mermaid
 flowchart LR
 A[POST /logs] --> B[LogEvent validation]
-B --> C[publish_log&#40;&#41;]
+B --> C["<code>publish_log#40;#41;</code>"]
 C --> D[XADD logs_stream]
 ```
 
@@ -323,7 +323,7 @@ C --> D[XADD logs_stream]
 ```mermaid
 flowchart LR
 A[POST /metrics] --> B[MetricEvent validation]
-B --> C[publish_metric&#40;&#41;]
+B --> C["<code>publish_metric#40;#41;</code>"]
 C --> D[XADD metrics_stream]
 ```
 
